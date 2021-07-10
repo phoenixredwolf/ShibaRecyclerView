@@ -1,7 +1,12 @@
 package com.example.shibarecyclerview.ui.main
 
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
+import com.example.shibarecyclerview.data.ShibaRepository
 
-class MainViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
+class MainViewModel(app: Application) : AndroidViewModel(app) {
+
+    private val dataRepo = ShibaRepository(app)
+    val shibaData = dataRepo.shibaData
+
 }
