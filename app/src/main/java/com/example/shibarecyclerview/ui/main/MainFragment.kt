@@ -4,34 +4,54 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.RecyclerView
-import com.example.shibarecyclerview.R
+import androidx.fragment.app.viewModels
+import com.example.shibarecyclerview.databinding.MainFragmentBinding
+import com.example.shibarecyclerview.ui.main.adapter.ShibeAdapter
+import com.example.shibarecyclerview.util.Resource
 
 
 class MainFragment : Fragment() {
 
-    private lateinit var viewModel: MainViewModel
-    private lateinit var recyclerView: RecyclerView
+    private val viewModel: MainViewModel by viewModels()
+    private var _binding: MainFragmentBinding? = null
+    private val binding get() = _binding!!
+
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view = inflater.inflate(R.layout.main_fragment, container, false)
-        recyclerView = view.findViewById(R.id.recycler)
+        _binding = MainFragmentBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        viewModel.shibaData.observe(viewLifecycleOwner, Observer
-        {
-            val adapter = MainRecyclerAdapter(requireContext(), it)
-            recyclerView.adapter = adapter
-        })
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        with(binding) {
+            viewModel.shibes.observe(viewLifecycleOwner) {
+                when (it) {
+                    is Resource.Loading -> {
+                        progressBar.isVisible = true
+                    }
+                    is Resource.Error -> {
+                        progressBar.isVisible = false
+                        Toast.makeText(requireContext(), it.errorMsg, Toast.LENGTH_LONG).show()
+                    }
+                    is Resource.Success -> {
+                        progressBar.isVisible = false
+                        shibeRv.adapter = ShibeAdapter(it.data.urls)
+                    }
+                }
+            }
+        }
+    }
 
-        return inflater.inflate(R.layout.main_fragment, container, false)
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 

@@ -1,12 +1,30 @@
 package com.example.shibarecyclerview.ui.main
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import com.example.shibarecyclerview.data.ShibaRepository
 
-class MainViewModel(app: Application) : AndroidViewModel(app) {
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.shibarecyclerview.data.models.ShibeResponse
+import com.example.shibarecyclerview.data.repo.ShibeRepository
+import com.example.shibarecyclerview.util.Resource
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-    private val dataRepo = ShibaRepository(app)
-    val shibaData = dataRepo.shibaData
+class MainViewModel : ViewModel() {
 
+    private var _shibes = MutableLiveData<Resource<ShibeResponse>>()
+    val shibes: LiveData<Resource<ShibeResponse>> get() = _shibes
+
+    init {
+        getShibes()
+    }
+
+    private fun getShibes() {
+        _shibes.value = Resource.Loading
+        viewModelScope.launch(Dispatchers.IO) {
+            val shibeResource = ShibeRepository.getShibes(50)
+            _shibes.postValue(shibeResource)
+        }
+    }
 }
