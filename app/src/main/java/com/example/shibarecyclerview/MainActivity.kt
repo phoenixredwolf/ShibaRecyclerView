@@ -1,8 +1,7 @@
 package com.example.shibarecyclerview
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.shibarecyclerview.ui.main.MainFragment
+import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -12,10 +11,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
 
-        if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.container, MainFragment.newInstance())
-                .commitNow()
-        }
+
     }
 }
