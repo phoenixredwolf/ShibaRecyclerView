@@ -1,8 +1,8 @@
 package com.example.shibarecyclerview.data.remote
 
 
-import com.example.shibarecyclerview.TIMEOUT
-import com.example.shibarecyclerview.WEB_SERVICE_URL
+import com.example.shibarecyclerview.util.TIMEOUT
+import com.example.shibarecyclerview.util.WEB_SERVICE_URL
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

@@ -13,8 +13,8 @@ import kotlinx.coroutines.launch
 
 class MainViewModel : ViewModel() {
 
-    private var _shibes = MutableLiveData<Resource<ShibeResponse>>()
-    val shibes: LiveData<Resource<ShibeResponse>> get() = _shibes
+    private var _shibes = MutableLiveData<Resource<List<String>>>()
+    val shibes: LiveData<Resource<List<String>>> get() = _shibes
 
     init {
         getShibes()

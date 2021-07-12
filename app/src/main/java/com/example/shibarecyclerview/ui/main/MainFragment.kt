@@ -1,5 +1,6 @@
 package com.example.shibarecyclerview.ui.main
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -37,17 +38,22 @@ class MainFragment : Fragment() {
                         progressBar.isVisible = true
                     }
                     is Resource.Error -> {
-                        progressBar.isVisible = false
                         Toast.makeText(requireContext(), it.errorMsg, Toast.LENGTH_LONG).show()
                     }
                     is Resource.Success -> {
-                        progressBar.isVisible = false
-                        shibeRv.adapter = ShibeAdapter(it.data.urls)
+                        shibeRv.adapter = ShibeAdapter(it.data) { url ->
+                            requireContext().toast(url)
+                        }
                     }
                 }
             }
         }
     }
+
+    private fun Context.toast(msg: String) {
+        Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

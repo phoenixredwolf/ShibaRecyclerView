@@ -12,7 +12,7 @@ object ShibeManager {
         service = retrofit.create(ShibeService::class.java)
     }
 
-    suspend fun getShibes(count: Int = 100): Response<ShibeResponse> {
+    suspend fun getShibes(count: Int = 100): Response<List<String>> {
         return service.getShibes(count)
     }
 }

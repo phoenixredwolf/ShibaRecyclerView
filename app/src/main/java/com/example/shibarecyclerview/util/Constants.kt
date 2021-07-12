@@ -1,7 +1,7 @@
-package com.example.shibarecyclerview
+package com.example.shibarecyclerview.util
 
-const val LOG_TAG           = "shibaLogging"
+const val LOG_TAG = "shibaLogging"
 
-const val WEB_SERVICE_URL   = "http://shibe.online"
+const val WEB_SERVICE_URL = "http://shibe.online"
 
-const val TIMEOUT           = 60*1000.toLong()
+const val TIMEOUT = 60 * 1000.toLong()

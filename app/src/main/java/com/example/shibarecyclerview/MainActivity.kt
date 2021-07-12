@@ -3,14 +3,4 @@ package com.example.shibarecyclerview
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 
-class MainActivity : AppCompatActivity() {
-
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.main_activity)
-
-
-    }
-}
+class MainActivity : AppCompatActivity(R.layout.main_activity)
