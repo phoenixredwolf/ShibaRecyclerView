@@ -1,6 +1,6 @@
 package com.example.shibarecyclerview.data.remote
 
-import com.example.shibarecyclerview.data.models.ShibeResponse
+
 import retrofit2.Response
 
 object ShibeManager {

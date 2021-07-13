@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.shibarecyclerview.data.models.ShibeResponse
 import com.example.shibarecyclerview.data.repo.ShibeRepository
 import com.example.shibarecyclerview.util.Resource
 import kotlinx.coroutines.Dispatchers
