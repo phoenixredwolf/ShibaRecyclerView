@@ -6,6 +6,7 @@ import com.example.shibarecyclerview.util.WEB_SERVICE_URL
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 
 object RetrofitService {
@@ -26,5 +27,6 @@ object RetrofitService {
         Retrofit.Builder()
             .baseUrl(WEB_SERVICE_URL)
             .client(providesOkHttpClient())
+            .addConverterFactory(MoshiConverterFactory.create())
             .build()
 }

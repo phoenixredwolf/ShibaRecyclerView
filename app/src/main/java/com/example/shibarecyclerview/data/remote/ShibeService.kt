@@ -10,5 +10,5 @@ interface ShibeService {
     @GET("api/shibes")
     suspend fun getShibes(
         @Query("count") count: Int
-    ) : Response<List<String>>
+    ): Response<List<String>>
 }

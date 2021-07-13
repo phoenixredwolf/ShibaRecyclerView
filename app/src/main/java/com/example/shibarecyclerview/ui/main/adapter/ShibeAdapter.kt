@@ -19,20 +19,19 @@ class ShibeAdapter(
         }
     }
 
-    override fun onBindViewHolder(holder: ShibeViewHolder, position: Int) = with(holder){
+    override fun onBindViewHolder(holder: ShibeViewHolder, position: Int) = with(holder) {
         bind(urls[position])
     }
 
     override fun getItemCount() = urls.size
 
-
     class ShibeViewHolder(
         private val binding: ShibaItemBinding
-        ) : RecyclerView.ViewHolder(binding.root) {
+    ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(url: String) = with(binding) {
-                shibeImage.loadImage(url)
-            }
+            shibeImage.loadImage(url)
+        }
 
         companion object {
 
@@ -41,7 +40,5 @@ class ShibeAdapter(
             )
         }
 
-
     }
-
 }

@@ -17,6 +17,7 @@ import com.example.shibarecyclerview.util.Resource
 class MainFragment : Fragment() {
 
     private val viewModel: MainViewModel by viewModels()
+
     private var _binding: MainFragmentBinding? = null
     private val binding get() = _binding!!
 
@@ -33,6 +34,7 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         with(binding) {
             viewModel.shibes.observe(viewLifecycleOwner) {
+                progressBar.isVisible = it is Resource.Loading
                 when (it) {
                     is Resource.Loading -> {
                         progressBar.isVisible = true
@@ -54,11 +56,8 @@ class MainFragment : Fragment() {
         Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
     }
 
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
-
 }
